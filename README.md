@@ -1,13 +1,12 @@
-openGPC 
+fade - fast adaptive stereo estimation 
 ===
 
-Implements the sparse stereo method *Global Patch Collider* by Shenlong Wang, Sean Ryan Fanello, 
-Christoph Rhemann, Shahram Izadi, Pushmeet Kohli, CVPR 2016
-
-Extended with the semi-dense stereo method *High-Performance and Tunable Stereo Reconstruction* by Sudeep Pillai, Srikumar Ramalingam, 
+Implements the semi-dense stereo method *High-Performance and Tunable Stereo Reconstruction* by Sudeep Pillai, Srikumar Ramalingam, 
 John J Leonard, ICRA 2016
+ 
+For sparse matches, the openGPC implementation of the Global Patch Collider.
 
-
+![](fade.gif)
 # Requirements
 - Eigen3
 - libpng
