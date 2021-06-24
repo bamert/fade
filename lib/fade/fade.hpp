@@ -224,7 +224,7 @@ class Fade {
         else
           Ditt = SemiDenseDisparityInterpolation(pixelMap, simg.mask, planeParams, validEstimateIndices);
 
-        //Fill interpolated disparities into ugly former GPC format
+        //Fill interpolated disparities into former GPC format
         std::vector<std::pair<ndb::Point, ndb::Point>> corr;
         //Cost evaluation
         Buffer<uint8_t> Citt;
@@ -237,7 +237,7 @@ class Fade {
           drawDelaunay(supp, triangles, simg.smooth, "triangulation_" + std::to_string(it) + ".png");
         }
 
-                //Disparity refinement
+        //Disparity refinement
         Dimension dim = pixelMap.getDimension();
         Buffer<ConfidentSupport> Cg(Eigen::Vector2i(1 + dim.w / szz, 1 + dim.h / szz), 
             ConfidentSupport(0, 0, 0, fadesettings.tlo_));

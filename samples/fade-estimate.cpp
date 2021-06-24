@@ -11,11 +11,12 @@ int main(int argc, const char *argv[]) {
   std::string forestPath   = "../../forests/defaultZeroForest.txt";
   std::string leftImgPath = "../../data/kitti/img0l.png";
   std::string rightImgPath = "../../data/kitti/img0r.png";
-
-  if(argc == 4){
+  std::string outname;
+  if(argc == 5){
     forestPath = argv[1];
     leftImgPath = argv[2];
     rightImgPath = argv[3];
+    outname = argv[4];
   }else{
     cout << "Usage: " << argv[0] << " <forest path> <left image path> <right image path>" << endl;
     cout << "Trying defaults:" << endl;
@@ -26,16 +27,18 @@ int main(int argc, const char *argv[]) {
 
   ndb::Fade fade;
   ndb::FadeSettings fadesettings = ndb::FadeSettings().builder()
-      .niters(1)            // Use single refinement step
+      .niters(3)            // Use single refinement step
       .szz(32)              // initial refinement grid size: 32x32 pixels
+      .tlo(0)               // Census cost lower bound
+      .thi(3)               // Census cost upper bound
       .useFinalFilter(true) // Use final disparity filter based on lr-consistency cost
       .debug(false);        // No debug output
 
   gpc::inference::InferenceSettings gpcsettings = gpc::inference::InferenceSettings().builder()
     .gradientThreshold(7)
     .verticalTolerance(0)   // 0px tolerance for rectified epipolar matches
-    .dispHigh(64)           // limit disparities to 64
-    .epipolarMode(false)    // use global matching for GPC states. Higher accuracy than epipolar, but less matches.
+    .dispHigh(128)           // limit disparities to 64
+    .epipolarMode(true)    // use global matching for GPC states. Higher accuracy than epipolar, but less matches.
     .useHashtable(false);   // use sort method for matching. faster for <100K descriptors.
 
   //Load image pair
@@ -69,7 +72,7 @@ int main(int argc, const char *argv[]) {
   // and the interpolated and filtered disparities (final)
   ndb::Buffer<ndb::RGBColor> renderDisp;
   renderDisp = ndb::getDisparityVisualization(simg, disparityImage.initialSupport);
-  renderDisp.writePNGRGB("disparity-fade-initial.png");
+  //renderDisp.writePNGRGB("disparity-fade-initial.png");
   renderDisp = ndb::getDisparityVisualization(simg, disparityImage.finalSupport);
-  renderDisp.writePNGRGB("disparity-fade-final.png");
+  renderDisp.writePNGRGB(outname);
 }
