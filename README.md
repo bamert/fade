@@ -4,7 +4,7 @@ fade - fast adaptive stereo estimation
 Implements the semi-dense stereo method *High-Performance and Tunable Stereo Reconstruction* by Sudeep Pillai, Srikumar Ramalingam, 
 John J Leonard, ICRA 2016
  
-For sparse matches, the openGPC implementation of the Global Patch Collider is used.
+For sparse matches, the [openGPC implementation](https://github.com/bamert/openGPC) of the Global Patch Collider is used.
 
 ![](fade.gif)
 # Requirements
