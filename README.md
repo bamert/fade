@@ -1,3 +1,6 @@
+
+
+
 fade - fast adaptive stereo estimation 
 ===
 
@@ -6,7 +9,8 @@ John J Leonard, ICRA 2016
  
 For sparse matches, the [openGPC implementation](https://github.com/bamert/openGPC) of the Global Patch Collider is used.
 
-![](fade.gif)
+
+https://user-images.githubusercontent.com/3902685/123321140-e448f600-d532-11eb-8858-7a8f60d262c2.mp4
 # Requirements
 - Eigen3
 - libpng
