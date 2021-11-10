@@ -1,6 +1,3 @@
-
-
-
 fade - fast adaptive stereo estimation 
 ===
 
